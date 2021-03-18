@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ProjetoPratico.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="CreateProduct">Criar Produto</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+              Nome
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Ativo
+            </th>
+            <th>
+                Peresivel
+            </th>
+            <th>
+                Categoria
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Perishable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                <a asp-action="UpdateProduct" asp-route-id="@item.Id" class="btn btn-warning">Editar</a> |
+                <a asp-action="DeleteProduct" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
